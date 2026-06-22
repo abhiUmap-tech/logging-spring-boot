@@ -8,3 +8,6 @@
 2026-06-22T10:37:41.878+05:30  INFO 13768 --- [LoggingInSpring] [main] c.p.l.LoggingInSpringApplication         : Started LoggingInSpringApplication in 0.495 seconds (process running for 0.739)
 2026-06-22T10:44:41.261+05:30  INFO 13768 --- [LoggingInSpring] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
 2026-06-22T10:44:41.264+05:30  INFO 13768 --- [LoggingInSpring] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-06-22T12:38:02.246+05:30  INFO 15477 --- [LoggingInSpring] [main] c.p.l.LoggingInSpringApplicationTests    : Starting LoggingInSpringApplicationTests using Java 26.0.1 with PID 15477 (started by abhishekumap in /Users/abhishekumap/Documents/SPRING/LoggingInSpring)
+2026-06-22T12:38:02.247+05:30  INFO 15477 --- [LoggingInSpring] [main] c.p.l.LoggingInSpringApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2026-06-22T12:38:02.540+05:30  INFO 15477 --- [LoggingInSpring] [main] c.p.l.LoggingInSpringApplicationTests    : Started LoggingInSpringApplicationTests in 0.419 seconds (process running for 0.791)
