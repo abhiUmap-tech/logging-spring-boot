@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: LoggingInSpring
+logging:
+  file:
+    name: logs/app.log
+  level:
+    com.projects.logginginspring.controller: INFO
+    com.projects.logginginspring.service: DEBUG
+

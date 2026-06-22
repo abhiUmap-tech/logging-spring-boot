@@ -1,0 +1,8 @@
+2026-06-22T10:37:41.537+05:30  INFO 13768 --- [LoggingInSpring] [main] c.p.l.LoggingInSpringApplication         : Starting LoggingInSpringApplication using Java 26.0.1 with PID 13768 (/Users/abhishekumap/Documents/SPRING/LoggingInSpring/target/classes started by abhishekumap in /Users/abhishekumap/Documents/SPRING/LoggingInSpring)
+2026-06-22T10:37:41.539+05:30  INFO 13768 --- [LoggingInSpring] [main] c.p.l.LoggingInSpringApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-06-22T10:37:41.759+05:30  INFO 13768 --- [LoggingInSpring] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-06-22T10:37:41.766+05:30  INFO 13768 --- [LoggingInSpring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-22T10:37:41.766+05:30  INFO 13768 --- [LoggingInSpring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-22T10:37:41.780+05:30  INFO 13768 --- [LoggingInSpring] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 227 ms
+2026-06-22T10:37:41.876+05:30  INFO 13768 --- [LoggingInSpring] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-06-22T10:37:41.878+05:30  INFO 13768 --- [LoggingInSpring] [main] c.p.l.LoggingInSpringApplication         : Started LoggingInSpringApplication in 0.495 seconds (process running for 0.739)
