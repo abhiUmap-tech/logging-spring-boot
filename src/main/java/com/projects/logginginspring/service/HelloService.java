@@ -14,6 +14,6 @@ public class HelloService {
         log.error("ERROR: HelloService LOG");
         log.debug("DEBUG: HelloService LOG");
 
-        return "Hello v2";
+        return "Hello v3 - CI/CD verified at " + BuildInfo.BUILD_TIME;
     }
 }
