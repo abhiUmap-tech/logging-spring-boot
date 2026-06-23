@@ -6,7 +6,7 @@ metadata:
   labels:
     app: logginginspring
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 3
   strategy:
     type: RollingUpdate
@@ -21,14 +21,6 @@ spec:
       labels:
         app: logginginspring
     spec:
-      # Spread pods across nodes / AZs where possible
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: ScheduleAnyway
-          labelSelector:
-            matchLabels:
-              app: logginginspring
       containers:
         - name: logginginspring
           image: abhishekumap/logging-spring:latest
@@ -46,11 +38,11 @@ spec:
               value: "-XX:MaxRAMPercentage=75.0 -XX:+UseG1GC"
           resources:
             requests:
-              cpu: "250m"
-              memory: "512Mi"
+              cpu: "200m"
+              memory: "384Mi"
             limits:
-              cpu: "1000m"
-              memory: "1Gi"
+              cpu: "500m"
+              memory: "768Mi"
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
@@ -74,15 +66,3 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 5
             failureThreshold: 24   # allow ~2 minutes for slow starts
-          # Mount a logback override (uncomment if using the logback ConfigMap above)
-          # volumeMounts:
-          #   - name: logback-config
-          #     mountPath: /app/logback-spring.xml
-          #     subPath: logback-spring.xml
-      # volumes:
-      #   - name: logback-config
-      #     configMap:
-      #       name: logginginspring-logback
-      #       items:
-      #         - key: logback-spring.xml
-      #           path: logback-spring.xml

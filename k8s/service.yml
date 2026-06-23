@@ -5,16 +5,12 @@ metadata:
   namespace: default
   labels:
     app: logginginspring
-  # annotations:
-  #   # AWS NLB example (uncomment on EKS for a real NLB instead of a classic ELB):
-  #   service.beta.kubernetes.io/aws-load-balancer-type: nlb
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: logginginspring
   ports:
     - name: http
-      port: 80           # external port the LB listens on
-      targetPort: 8080   # containerPort exposed by the deployment
+      port: 80
+      targetPort: 8080
       protocol: TCP
-  # sessionAffinity: None   # uncomment to disable sticky sessions
