@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logginginspring-config
+  namespace: default
+  labels:
+    app: logginginspring
+data:
+  # Spring Boot picks these up automatically as environment variables / properties.
+  # Override anything from application.properties here without rebuilding the image.
+  SERVER_PORT: "8080"
+  SPRING_PROFILES_ACTIVE: "default"
+  # Spring Boot maps LOGGING_LEVEL_<UPPER_DOTTED_PKG> to logging.level.<pkg>.
+  # Comma-separated keys let us set multiple packages in one env var.
+  LOGGING_LEVEL_COM_PROJECTS_LOGGINGINSPRING: "DEBUG"
+  LOGGING_LEVEL_ROOT: "INFO"

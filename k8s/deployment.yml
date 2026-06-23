@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logginginspring-deployment
+  namespace: default
+  labels:
+    app: logginginspring
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: logginginspring
+  template:
+    metadata:
+      labels:
+        app: logginginspring
+    spec:
+      # Spread pods across nodes / AZs where possible
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: logginginspring
+      containers:
+        - name: logginginspring
+          image: abhishekumap/logging-spring:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: logginginspring-config
+          env:
+            # JVM ergonomics for containers (matches resource limits below)
+            - name: JAVA_TOOL_OPTIONS
+              value: "-XX:MaxRAMPercentage=75.0 -XX:+UseG1GC"
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 24   # allow ~2 minutes for slow starts
+          # Mount a logback override (uncomment if using the logback ConfigMap above)
+          # volumeMounts:
+          #   - name: logback-config
+          #     mountPath: /app/logback-spring.xml
+          #     subPath: logback-spring.xml
+      # volumes:
+      #   - name: logback-config
+      #     configMap:
+      #       name: logginginspring-logback
+      #       items:
+      #         - key: logback-spring.xml
+      #           path: logback-spring.xml

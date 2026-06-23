@@ -14,6 +14,6 @@ public class HelloService {
         log.error("ERROR: HelloService LOG");
         log.debug("DEBUG: HelloService LOG");
 
-        return "Hello";
+        return "Hello v2";
     }
 }

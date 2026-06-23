@@ -1,9 +1,20 @@
 spring:
   application:
     name: LoggingInSpring
+  # Actuator: expose only the health endpoints (don't leak env/beans over HTTP)
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health
+    endpoint:
+      health:
+        probes:
+          enabled: true
 logging:
-  file:
-    name: logs/app.log
+  # In containers we log to stdout so `kubectl logs` works.
+  # Remove this block entirely (or set file.name: "") when running locally if you
+  # want files under ./logs/.
   level:
     com.projects.logginginspring.controller: INFO
     com.projects.logginginspring.service: DEBUG
